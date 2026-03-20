@@ -1,0 +1,17 @@
+{
+  "name": "banco-api-testing",
+  "version": "1.0.0",
+  "description": "Projeto de automação de API com Supertest da Mentoria 2.0 do Júlio de Lima",
+  "license": "ISC",
+  "author": "thiago.andrade",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/**/*.js --timeout=200000"
+  },
+  "dependencies": {
+    "chai": "^6.2.2",
+    "mocha": "^11.7.5",
+    "supertest": "^7.2.2"
+  }
+}
