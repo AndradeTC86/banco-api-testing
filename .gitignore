@@ -30,3 +30,6 @@ build/
 # Logs
 logs/
 *.log
+
+# Reports
+mochawesome-report/
