@@ -7,11 +7,12 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.js --timeout=200000"
+    "test": "mocha ./test/**/*.js --timeout=200000 --reporter mochawesome"
   },
   "dependencies": {
     "chai": "^6.2.2",
     "mocha": "^11.7.5",
+    "mochawesome": "^7.1.4",
     "supertest": "^7.2.2"
   }
 }
