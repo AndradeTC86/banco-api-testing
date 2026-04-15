@@ -1,12 +1,11 @@
 const request = require('supertest')
 const { expect } = require('chai')
-
-let baseUrl = 'http://localhost:3000'
+require('dotenv').config()
 
 describe('Testes de validação do endpoint Transferencias', () => {
     describe('POST /transferencias', ()=>{
         it('Deve retornar sucesso com código 201 quando o valor da transferencia for igual ou acima de R$10,00', async () => {
-            const responseLogin = await request(baseUrl)
+            const responseLogin = await request(process.env.BASE_URL)
                             .post('/login')
                             .set('Content-Type', 'application/json')
                             .send({
@@ -15,7 +14,7 @@ describe('Testes de validação do endpoint Transferencias', () => {
                             })                
                             const token = responseLogin.body.token
             
-            const response = await request(baseUrl)
+            const response = await request(process.env.BASE_URL)
                 .post('/transferencias')
                 .set('Content-Type', 'application/json')
                 .set('Authorization', `Bearer ${token}`)
@@ -29,7 +28,7 @@ describe('Testes de validação do endpoint Transferencias', () => {
         })
         
         it('Deve retornar erro com código 422 quando o valor da transferencia for abaixo de R$10,00', async () => {
-            const responseLogin = await request(baseUrl)
+            const responseLogin = await request(process.env.BASE_URL)
                             .post('/login')
                             .set('Content-Type', 'application/json')
                             .send({
@@ -38,7 +37,7 @@ describe('Testes de validação do endpoint Transferencias', () => {
                             })                
                             const token = responseLogin.body.token
             
-            const response = await request(baseUrl)
+            const response = await request(process.env.BASE_URL)
                 .post('/transferencias')
                 .set('Content-Type', 'application/json')
                 .set('Authorization', `Bearer ${token}`)
