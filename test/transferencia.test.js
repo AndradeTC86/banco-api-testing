@@ -5,10 +5,14 @@ const { getToken } = require('../helpers/authentication')
 const login = require('../fixtures/users.json')
 
 describe('Testes de validação do endpoint Transferencias', () => {
+    let token
+
+    beforeEach(async () => {
+        token = await getToken(login.usuario, login.senha)
+    })
+
     describe('POST /transferencias', ()=>{
         it('Deve retornar sucesso com código 201 quando o valor da transferencia for igual ou acima de R$10,00', async () => {            
-            const token = await getToken(login.usuario, login.senha)
-            
             const response = await request(process.env.BASE_URL)
                 .post('/transferencias')
                 .set('Content-Type', 'application/json')
@@ -23,8 +27,6 @@ describe('Testes de validação do endpoint Transferencias', () => {
         })
         
         it('Deve retornar erro com código 422 quando o valor da transferencia for abaixo de R$10,00', async () => {           
-            const token = await getToken(login.usuario, login.senha)
-            
             const response = await request(process.env.BASE_URL)
                 .post('/transferencias')
                 .set('Content-Type', 'application/json')
