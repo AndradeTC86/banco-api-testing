@@ -2,13 +2,13 @@ const request = require('supertest')
 const { expect } = require('chai')
 require('dotenv').config()
 const { getToken } = require('../helpers/authentication')
-const login = require('../fixtures/users.json')
+const dados = require('../fixtures/postTransferencias.json')
 
 describe('Testes de validação do endpoint Transferencias', () => {
     let token
 
     beforeEach(async () => {
-        token = await getToken(login.usuario, login.senha)
+        token = await getToken()
     })
 
     describe('POST /transferencias', ()=>{
@@ -18,10 +18,10 @@ describe('Testes de validação do endpoint Transferencias', () => {
                 .set('Content-Type', 'application/json')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
-                    contaOrigem: 1,
-                    contaDestino: 2,
-                    valor: 10.00,
-                    token: ""
+                    contaOrigem: dados[0].contaOrigem,
+                    contaDestino: dados[0].contaDestino,
+                    valor: dados[0].valor,
+                    token: dados[0].token
             })
             expect(response.status).to.equal(201)
         })
@@ -32,10 +32,10 @@ describe('Testes de validação do endpoint Transferencias', () => {
                 .set('Content-Type', 'application/json')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
-                    contaOrigem: 2,
-                    contaDestino: 1,
-                    valor: 9.99,
-                    token: ""
+                    contaOrigem: dados[1].contaOrigem,
+                    contaDestino: dados[1].contaDestino,
+                    valor: dados[1].valor,
+                    token: dados[1].token
             })
             expect(response.status).to.equal(422)
         })
