@@ -1,7 +1,7 @@
 const request = require('supertest')
 const { expect } = require('chai')
 
-describe('Testes de validação do login', () => {
+describe('Testes de validação do endpoint Login', () => {
     describe('POST /login', () => {
         it('Deve retornar 200 com token em string quando usar credenciais válidas', async () => {
             const response = await request('http://localhost:3000')
