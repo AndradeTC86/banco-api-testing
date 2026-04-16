@@ -40,4 +40,27 @@ describe('Testes de validação do endpoint Transferencias', () => {
             expect(response.status).to.equal(422)
         })
     })
+
+    describe('GET /transferencias/id', () => {
+        it('Deve retornar sucesso com mensagem 200 e dados iguais ao registro de transferência contido no banco de dados quando o id for válido', async () => {
+            const response = await request(process.env.BASE_URL)
+            .get(`/transferencias/4`)
+            .set('Authorization', `Bearer ${token}`)
+            expect(response.status).to.equal(200)
+            expect(response.body.id).to.equal(4)
+            expect(response.body.conta_origem_id).to.equal(1)
+            expect(response.body.conta_destino_id).to.equal(2)
+        })
+    })
+
+    describe('GET /transferencias', async () => {
+        it('Deve retornar 10 elementos na paginação quando informar limite de 10 registros', async () => {
+            const response = await request(process.env.BASE_URL)
+            .get(`/transferencias?page=1&limit=10`)
+            .set('Authorization', `Bearer ${token}`)
+            expect(response.status).to.equal(200)
+            expect(response.body.limit).to.equal(10)
+            expect(response.body.transferencias).to.have.lengthOf(10)
+        })
+    })
 })
