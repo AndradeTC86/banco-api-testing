@@ -2,7 +2,7 @@
 
 # Automation API Supertest
 
-This is the repository for automation of API, developed to work with Supertest.
+This is the repository for automation of API, developed to work with Supertest, Mocha and Chai.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ The goal of this repository is to be easy to understand focused on developing au
 
 ## Tests
 
-The tests were written using the JavaScript language with Supertest.
+The tests were written using the JavaScript language with Supertest, Mocha and Chai.
 
 ## Run tests
 
